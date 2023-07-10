@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='美多商城',active='home'"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>美多商城-首页</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/amazeui.css">
+    &lt;!&ndash;<link rel="stylesheet" type="text/css" href="css/app.css">&ndash;&gt;-->
+
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="js/slide.js"></script>
+    <style type="text/css">
+        ul{list-style: none;}
+        ul li{display: inline-block;}
+        .am-pagination {
+            padding-left: 0;
+            margin: 1.5rem 0;
+            list-style: none;
+            color: #999999;
+            text-align: left;
+        }
+        .am-pagination>li{
+            display: inline-block;
+        }
+        .am-pagination > li > a,
+        .am-pagination > li > span {
+            position: relative;
+            display: block;
+            padding: 0.5em 1em;
+            text-decoration: none;
+            line-height: 1.2;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 0;
+            margin-bottom: 5px;
+            margin-right: 5px;
+        }
+        .am-pagination > li:last-child > a,
+        .am-pagination > li:last-child > span {
+            margin-right: 0;
+        }
+        .am-pagination > li > a:hover,
+        .am-pagination > li > span:hover,
+        .am-pagination > li > a:focus,
+        .am-pagination > li > span:focus {
+            background-color: #eeeeee;
+        }
+        .am-pagination > .am-active > a,
+        .am-pagination > .am-active > span,
+        .am-pagination > .am-active > a:hover,
+        .am-pagination > .am-active > span:hover,
+        .am-pagination > .am-active > a:focus,
+        .am-pagination > .am-active > span:focus {
+            z-index: 2;
+            color: #ffffff;
+            background-color: #0e90d2;
+            border-color: #0e90d2;
+            cursor: default;
+        }
+        .am-pagination > .am-disabled > span,
+        .am-pagination > .am-disabled > span:hover,
+        .am-pagination > .am-disabled > span:focus,
+        .am-pagination > .am-disabled > a,
+        .am-pagination > .am-disabled > a:hover,
+        .am-pagination > .am-disabled > a:focus {
+            color: #999999;
+            background-color: #ffffff;
+            border-color: #dddddd;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .am-pagination .am-pagination-prev {
+            float: left;
+        }
+        .am-pagination .am-pagination-prev a {
+            border-radius: 0;
+        }
+        .am-pagination .am-pagination-next {
+            float: right;
+        }
+        .am-pagination .am-pagination-next a {
+            border-radius: 0;
+        }
+        .am-pagination-default, .am-pagination-select {
+            margin-right: 10px;
+            margin-left: 10px;
+            font-size: 1.6rem
+        }
+        .am-pagination {
+            position: relative
+        }
+        .am-pagination a{
+            border-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div class="header_con">
+    <div class="header">
+        <div class="welcome fl">欢迎来到美多商城!</div>
+        <div class="fr">
+            <!--<div class="login_btn fl" th:if="${session.uaccount} ne null">
+                <a href="">
+                    欢迎您：<em th:text="${session.uaccount}"></em>-->
+            <div class="login_btn fl" th:if="${user.uaccount} ne null">
+                <a href="">
+                    欢迎您：<em th:text="${user.uname}"></em>
+                </a>
+                    <span>|</span>
+                    <a href="/goods/cartAll">我的购物车</a>
+                    <span>|</span>
+                    <a href="/goods/getAllorder">我的订单</a>
+                <span>|</span>
+                <a href="goods/quit">退出</a>
+            </div>
+            <div class="login_btn fl" th:if="${user.uaccount} eq null">
+            <a th:href="@{'/tologin'}">
+                请您登陆
+            </a>
+        </div>
+
+        </div>
+    </div>
+</div>
+<div class="search_bar clearfix">
+    <a th:href="@{'getAll?uaccount='+${user.uaccount}}" class="logo fl"><img th:src="@{img/logo.png}"></a>
+    <div class="search_con fl">
+        <form action="/goods/getOne" method="get">
+            <input type="text" class="input_text fl" name="name" placeholder="搜索商品">
+            <input type="submit" class="input_btn fr" name="" value="搜索">
+        </form>
+    </div>
+</div>
+<form action="/goods/shop" method="get">
+    <div class="navbar_con">
+        <div class="navbar">
+            <h1 class="fl">全部商品分类</h1>
+            <ul class="navlist fl">
+                <li><a href="#">首页</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="center_con clearfix">
+        <ul class="subnav fl">
+            <li><a href="#model01" class="fruit">新鲜水果</a></li>
+            <li><a href="#model02" class="seafood">海鲜水产</a></li>
+            <li><a href="#model03" class="meet">新鲜蔬菜</a></li>
+            <li><a href="#model04" class="egg">速冻食品</a></li>
+        </ul>
+        <div class="slide fl">
+            <ul class="slide_pics">
+                <li><img th:src="@{img/slide.jpg}" alt="幻灯片"></li>
+                <li><img th:src="@{img/slide02.jpg}" alt="幻灯片"></li>
+                <li><img th:src="@{img/slide03.jpg}" alt="幻灯片"></li>
+                <li><img th:src="@{img/slide04.jpg}" alt="幻灯片"></li>
+            </ul>
+            <div class="prev"></div>
+            <div class="next"></div>
+            <ul class="points"></ul>
+        </div>
+        <div class="adv fl">
+            <a href="#"><img th:src="@{img/adv01.jpg}"></a>
+            <a href="#"><img th:src="@{img/adv02.jpg}"></a>
+        </div>
+    </div>
+<div class="list_model" style="height: 400px;">
+    <div class="list_title clearfix">
+        <h3 class="fl" id="model06">查询商品</h3>
+    </div>
+    <div class="goods_con_1 clearfix">
+        <ul class="goods_list fl" style="height: 300px;width: 1200px;margin-left: 60px">
+            <li th:each="goods:${goods}" style="margin-right: 20px;margin-top: 10px">
+                <input style="top: 1px;display: none" type="checkbox" name="che" th:value="${goods.gid}" >
+                <h4 th:text="${goods.gname}"></h4>
+                <a th:href="@{'goodsDetail?id='+${goods.gid}}"><img th:src="@{'/img'+${goods.gremain}}" ></a>
+                <!--<a href="javascript:void(0)" onclick="AddCart({$t:[itemid]});">加入购物车</a>-->
+                <div class="prize" th:text="'￥'+${goods.gprice}"></div>
+                <input id="pageCount" th:value="${pageInfo.getTotalPages()}" style="display: none">
+                <input id="page" th:value="${pageInfo.getNumber()}" style="display: none">
+            </li>
+        </ul>
+        <ul style="width: 1200px;margin-left: 60px;">
+            <div class="am-pagination"  style="height: 50px;font-size: initial;margin-left: 425px;width: 300px;margin-top: 340px">
+                <a th:href="@{'/selectOne?id='+${user.uaccount}}">首页</a>
+                <a th:href="@{'/selectOne?id='+${user.uaccount}+'&pageNum='+${pageInfo.getNumber()-1}}">上一页</a>
+                <th:block th:if="${pageInfo.getNumber()+2}>=${pageInfo.getTotalPages()}">
+                    <a th:href="@{'selectOne?id='+${user.uaccount}+'&pageNum='+${pageInfo.getTotalPages()}}">下一页</a>
+                </th:block>
+                <th:block th:if="${pageInfo.getNumber()+2}<${pageInfo.getTotalPages()}">
+                    <a th:href="@{'selectOne?id='+${user.uaccount}+'&pageNum='+${pageInfo.getNumber()+2}}">下一页</a>
+                </th:block>
+                <a th:href="@{'selectOne?id='+${user.uaccount}+'&pageNum='+${pageInfo.getTotalPages()}}">尾页</a>
+            </div>
+        </ul>
+
+    </div>
+    </div>
+
+</div>
+</form>
+<div class="footer">
+    <div class="foot_link">
+        <a href="#">关于我们</a>
+        <span>|</span>
+        <a href="#">联系我们</a>
+        <span>|</span>
+        <a href="#">招聘人才</a>
+        <span>|</span>
+        <a href="#">友情链接</a>
+    </div>
+    <p>CopyRight © 2019 北京美多商城有限公司 All Rights Reserved</p>
+    <p>电话：010-****888    京ICP备*******8号</p>
+</div>
+<script type="text/javascript" src="http://localhost:8894/goods-consumer/templates/js/slideshow.js"></script>
+<script type="text/javascript">
+    BCSlideshow('focuspic');
+    var oFruit = document.getElementById('fruit_more');
+    var oShownum = document.getElementById('show_count');
+
+    var hasorder = localStorage.getItem('order_finish');
+
+    if(hasorder)
+    {
+        oShownum.innerHTML = '2';
+    }
+
+    oFruit.onclick = function(){
+        window.location.href = 'list.html';
+    }
+
+</script>
+</body>
+</html>

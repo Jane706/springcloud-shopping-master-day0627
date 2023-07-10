@@ -1,0 +1,83 @@
+<!--
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='美多商城登录',active='home'">
+<head>
+    <meta charset="utf-8" />
+    <title>登录页面</title>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8894/user-consumer/templates/css/public.css" />
+    <link rel="stylesheet" type="text/css" href="http://localhost:8894/user-consumer/templates/css/login.css"/>
+</head>
+<body>
+<div class="box">
+    <div class="dly">
+        <div class="dly_left"></div>
+        <form action="/admin/login" method="get">
+        <div class="dly_right">
+            <p class="tit">登陆验证</p>
+            <div class="zc_username">
+                <span class="zc_tit">用户名</span>
+                <input type="text" id="userName" name="uname" class="uname" />
+                &lt;!&ndash; for="email"&ndash;&gt;
+            </div>
+
+            <div class="zc_password">
+                <span class="zc_tit">密&nbsp;&nbsp;&nbsp;码</span>
+                <input type="password" id="password" name="upassword" class="pass_word" />
+                &lt;!&ndash; for="email"&ndash;&gt;
+                <label class="error" id="pass_word_error"></label>
+            </div>
+           &lt;!&ndash; <a href="http://localhost:8896/goods/getAll" style="text-decoration:none; font-size: 15px">登录</a>&ndash;&gt;
+            <input id="btn-ty" class="btn-ty" type="submit" value="登录">
+            &lt;!&ndash;<button id="btn-ty" class="btn-ty" onclick="login.doLogin();">登录</button>&ndash;&gt;
+
+            <p class="cstyle">没有账号？<a href='/admin/toregister'>立即注册</a></p>
+        </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+-->
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org
+" th:with="title='美多商城登录',active='home'">
+<!-- 载入文章头部页面，位置在/client文件夹下的header模板页面，模板名称th:fragment为header -->
+<head>
+    <meta charset="utf-8" />
+    <title>登录页面</title>
+    <link rel="stylesheet" type="text/css" href="css/public.css" />
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
+</head>
+<body>
+<div class="box">
+    <div class="dly">
+        <div class="dly_left">
+            <img th:src="@{'img/dl.png'}">
+        </div>
+        <div th:if="${param.error}" style="color: red" th:text="#{login.error}">用户名或密码错误!</div>
+        <form th:action="@{/userLogin}" method="post" id="loginForm">
+            <div class="dly_right">
+                <p class="tit">登陆验证</p>
+                <div class="zc_username">
+                    <span class="zc_tit">用户名</span>
+                    <input type="text" name="name" th:placeholder="#{login.username}" class="username" />
+                    <!-- for="email"-->
+                </div>
+                <div class="zc_password">
+                    <span class="zc_tit">密&nbsp;&nbsp;&nbsp;码</span>
+                    <input type="password" th:placeholder="#{login.password}" name="pwd" class="pass_word" />
+                    <!-- for="email"-->
+                    <label class="error" id="pass_word_error"></label>
+                </div>
+                <input id="btn-ty" class="btn-ty" type="submit" value="登录">
+                <!--<button id="btn-ty" class="btn-ty" onclick="login.doLogin();">登录</button>-->
+
+                <p class="cstyle">没有账号？<a href='http://localhost:8088/admin/toregister'>立即注册</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
